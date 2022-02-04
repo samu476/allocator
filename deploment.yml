@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iallocator
+spec:
+  selector:
+    matchLabels:
+      app: iallocator
+  template:
+    metadata:
+      labels:
+        app: iallocator
+    spec:
+      containers:
+        - name: iallocator
+          image: isensacr.azurecr.io/iallocator:1.0.0
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8000
+          env:
+          - name: ONTO_URL
+            value: https://isens-onto.azurewebsites.net/api/ner/iAllocator_NER 
